@@ -54,6 +54,7 @@ public class MainMenu implements Screen {
         buttonPlay.addListener(new ChangeListener() {
             public void changed (ChangeEvent event, Actor actor) {
                 //TODO
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new RaceScreen());
             }
         });
         
