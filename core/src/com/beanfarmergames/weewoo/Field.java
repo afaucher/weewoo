@@ -52,14 +52,12 @@ public class Field extends AbstractField<RenderContext, GameEntity> {
 
     @Override
     protected Vector2 getStaticGravity() {
-        // TODO Auto-generated method stub
-        return null;
+        return new Vector2(0,0);
     }
 
     @Override
     protected void buildWorld(World w) {
-        // TODO Auto-generated method stub
-
+        //No obstacles yet
     }
 
 }

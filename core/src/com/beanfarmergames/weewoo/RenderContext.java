@@ -2,6 +2,7 @@ package com.beanfarmergames.weewoo;
 
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class RenderContext {
     public enum RenderLayer {
@@ -10,11 +11,13 @@ public class RenderContext {
     
     private final RenderLayer renderLayer;
     private final OrthographicCamera camera;
+    private final ShapeRenderer renderer;
 
-    public RenderContext(RenderLayer renderLayer, OrthographicCamera camera) {
+    public RenderContext(ShapeRenderer renderer, RenderLayer renderLayer, OrthographicCamera camera) {
         super();
         this.renderLayer = renderLayer;
         this.camera = camera;
+        this.renderer = renderer;
     }
 
     public RenderLayer getRenderLayer() {
@@ -23,6 +26,10 @@ public class RenderContext {
 
     public OrthographicCamera getCamera() {
         return camera;
+    }
+
+    public ShapeRenderer getRenderer() {
+        return renderer;
     }
     
     
