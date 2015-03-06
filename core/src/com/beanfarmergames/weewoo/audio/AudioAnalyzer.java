@@ -174,4 +174,17 @@ public class AudioAnalyzer {
 
         return map;
     }
+
+    public static float getClosestFreqToTarget(FrequencyDomain domain, float target) {
+        double closestFreq = 0;
+        double closestDist = Double.MAX_VALUE;
+        for (Double actual : domain.getFft().values()) {
+            double dist = Math.abs(target - actual);
+            if (dist < closestDist) {
+                closestFreq = actual;
+                closestDist = dist;
+            }
+        }
+        return (float) closestFreq;
+    }
 }

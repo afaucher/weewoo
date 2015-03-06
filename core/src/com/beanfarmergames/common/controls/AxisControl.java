@@ -10,6 +10,7 @@ public class AxisControl implements Control {
         this.x = x;
         this.maxValue = maxValue;
         this.minValue = minValue;
+        assert(maxValue > minValue);
 
         setX(x);
     }

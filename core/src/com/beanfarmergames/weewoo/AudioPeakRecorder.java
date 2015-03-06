@@ -7,6 +7,7 @@ import com.beanfarmergames.weewoo.audio.FrequencyDomain;
 import com.beanfarmergames.weewoo.audio.FrequencyRange;
 
 public class AudioPeakRecorder implements Runnable {
+    
 
     private static final int MIC_SAMPLING_RATE = 22050;
     private static final int AUDIO_SAMPLES = 4048;
@@ -76,5 +77,9 @@ public class AudioPeakRecorder implements Runnable {
         synchronized (this) {
             return this.lastMicDomain;
         }
+    }
+    
+    public FrequencyRange getRange() {
+        return this.range;
     }
 }

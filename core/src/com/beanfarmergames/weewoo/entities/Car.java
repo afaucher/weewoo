@@ -22,8 +22,9 @@ import com.beanfarmergames.weewoo.RenderContext.RenderLayer;
 
 public class Car extends GameEntity implements UpdateCallback, RenderCallback<RenderContext>, Disposable {
     private static final float CAR_TURNING_TORQUE = 3f;
-    private static final float CAR_THRUST = 0.25f;
+    private static final float CAR_THRUST = 0.20f;
     private static final float CAR_SPEED_THRUST_LIMIT = 0.5f;
+    private static final float CAR_BOOST_MULTIPLIER = 2;
     private final Body body;
     private SpriteBatch batch = null;
     private final Field field;
@@ -57,7 +58,7 @@ public class Car extends GameEntity implements UpdateCallback, RenderCallback<Re
 
     public Car(Field field, Vector2 spwan) {
         this.field = field;
-        
+
         batch = new SpriteBatch();
 
         // Build Body
@@ -65,7 +66,7 @@ public class Car extends GameEntity implements UpdateCallback, RenderCallback<Re
 
         BodyDef bd = new BodyDef();
         bd.allowSleep = true;
-        bd.position.set(0,0);
+        bd.position.set(0, 0);
         body = world.createBody(bd);
         body.setBullet(true);
         body.setAngularDamping(0.1f);
@@ -74,7 +75,7 @@ public class Car extends GameEntity implements UpdateCallback, RenderCallback<Re
         body.setType(BodyDef.BodyType.DynamicBody);
 
         attachShape(body, new Vector2(), 5, this);
-        
+
         body.setTransform(spwan, 0);
 
         // Insert into field
@@ -95,17 +96,17 @@ public class Car extends GameEntity implements UpdateCallback, RenderCallback<Re
         }
 
         Vector2 pos = body.getTransform().getPosition();
-        
-        //TODO: There has to be an easier way to do this
+
+        // TODO: There has to be an easier way to do this
         Matrix4 m1 = new Matrix4().trn(pos.x, pos.y, 0);
         Matrix4 m2 = new Matrix4().rotateRad(0, 0, 1, body.getAngle());
-        
+
         float width = sprite.getWidth() / 10;
         float height = sprite.getHeight() / 10;
-        
+
         batch.begin();
         batch.setTransformMatrix(m1.mul(m2));
-        batch.draw(sprite, - width / 2, - height / 2, width, height);
+        batch.draw(sprite, -width / 2, -height / 2, width, height);
         batch.end();
         batch.setTransformMatrix(new Matrix4());
     }
@@ -115,17 +116,19 @@ public class Car extends GameEntity implements UpdateCallback, RenderCallback<Re
         // TODO Auto-generated method stub
 
         float torque = -CAR_TURNING_TORQUE * carControl.getX().getX();
-        float thrustNewtons = CAR_THRUST * carControl.getY().getX();
+        float boost = carControl.getBoost().getX();
+        float baseThrust = CAR_THRUST * (1 + boost * CAR_BOOST_MULTIPLIER);
+        float thrustNewtons = baseThrust * carControl.getY().getX();
         if (thrustNewtons < 0) {
-            //Flip controls if driving backwards
+            // Flip controls if driving backwards
             torque = -torque;
         }
         float speed = body.getLinearVelocity().len();
         float speedRatio = speed / CAR_SPEED_THRUST_LIMIT;
-        float speedMultiplier = Math.min(Math.max(speedRatio, 0),1);
+        float speedMultiplier = Math.min(Math.max(speedRatio, 0), 1);
         torque *= speedMultiplier;
         body.applyTorque(torque, true);
-        
+
         Transform transform = body.getTransform();
         Vector2 point = transform.getPosition().cpy();
         float rotationRad = transform.getRotation() + MathUtils.PI * 1.0f / 2.0f;
@@ -145,7 +148,7 @@ public class Car extends GameEntity implements UpdateCallback, RenderCallback<Re
         field.getRenderCallbacks().removeCallback(this);
         field.getUpdateCallbacks().removeCallback(this);
         field.getDisposeCallbacks().removeCallback(this);
-        
+
         batch.dispose();
     }
 
