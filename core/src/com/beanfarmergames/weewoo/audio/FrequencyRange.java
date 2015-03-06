@@ -1,4 +1,4 @@
-package com.beanfarmergames.weewoo;
+package com.beanfarmergames.weewoo.audio;
 
 public class FrequencyRange {
     public final float minimumFrequency;

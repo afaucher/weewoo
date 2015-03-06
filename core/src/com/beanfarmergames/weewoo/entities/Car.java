@@ -1,11 +1,7 @@
-package com.beanfarmergames.weewoo;
+package com.beanfarmergames.weewoo.entities;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
@@ -19,10 +15,15 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Disposable;
 import com.beanfarmergames.common.callbacks.RenderCallback;
 import com.beanfarmergames.common.callbacks.UpdateCallback;
+import com.beanfarmergames.weewoo.CarControl;
+import com.beanfarmergames.weewoo.Field;
+import com.beanfarmergames.weewoo.RenderContext;
+import com.beanfarmergames.weewoo.RenderContext.RenderLayer;
 
 public class Car extends GameEntity implements UpdateCallback, RenderCallback<RenderContext>, Disposable {
-    private static final float CAR_TURNING_TORQUE = 2f;
-    private static final float CAR_THRUST = 0.5f;
+    private static final float CAR_TURNING_TORQUE = 3f;
+    private static final float CAR_THRUST = 0.25f;
+    private static final float CAR_SPEED_THRUST_LIMIT = 0.5f;
     private final Body body;
     private SpriteBatch batch = null;
     private final Field field;
@@ -114,9 +115,17 @@ public class Car extends GameEntity implements UpdateCallback, RenderCallback<Re
         // TODO Auto-generated method stub
 
         float torque = -CAR_TURNING_TORQUE * carControl.getX().getX();
+        float thrustNewtons = CAR_THRUST * carControl.getY().getX();
+        if (thrustNewtons < 0) {
+            //Flip controls if driving backwards
+            torque = -torque;
+        }
+        float speed = body.getLinearVelocity().len();
+        float speedRatio = speed / CAR_SPEED_THRUST_LIMIT;
+        float speedMultiplier = Math.min(Math.max(speedRatio, 0),1);
+        torque *= speedMultiplier;
         body.applyTorque(torque, true);
         
-        float thrustNewtons = CAR_THRUST * carControl.getY().getX();
         Transform transform = body.getTransform();
         Vector2 point = transform.getPosition().cpy();
         float rotationRad = transform.getRotation() + MathUtils.PI * 1.0f / 2.0f;

@@ -1,4 +1,4 @@
-package com.beanfarmergames.weewoo;
+package com.beanfarmergames.weewoo.audio;
 
 import java.util.Map;
 import java.util.TreeMap;
@@ -8,7 +8,7 @@ import com.badlogic.gdx.audio.AudioDevice;
 
 public class SoundMap {
     public final short[] samples;
-    public final WavInputStream wav;
+    public final int sampleRate;
     public final int sampleInterval;
     public final FrequencyRange range;
     /**
@@ -20,27 +20,27 @@ public class SoundMap {
      */
     public final TreeMap<Double, FrequencyDomain> timeToPeakFrequencies;
 
-    public SoundMap(short[] samples, FrequencyRange range, WavInputStream wav, TreeMap<Double, FrequencyDomain> timeToPeakFrequencies, int sampleInterval) {
+    public SoundMap(short[] samples, FrequencyRange range, int sampleRate, TreeMap<Double, FrequencyDomain> timeToPeakFrequencies, int sampleInterval) {
         super();
         this.samples = samples;
-        this.wav = wav;
+        this.sampleRate = sampleRate;
         this.timeToPeakFrequencies = timeToPeakFrequencies;
         this.sampleInterval = sampleInterval;
         this.range = range;
     }
 
     public void play() {
-        AudioDevice a = Gdx.audio.newAudioDevice(wav.sampleRate, true);
+        AudioDevice a = Gdx.audio.newAudioDevice(sampleRate, true);
         a.writeSamples(samples, 0, samples.length);
         a.dispose();
     }
     
     public double getSeconds() {
-        return (double)samples.length / wav.sampleRate;
+        return (double)samples.length / sampleRate;
     }
     
     public double getMapIntervalSeconds() {
-        return (double)sampleInterval / wav.sampleRate;
+        return (double)sampleInterval / sampleRate;
     }
 
     public String toString() {
@@ -61,7 +61,7 @@ public class SoundMap {
             builder.append("\"Peak\": ");
             builder.append("[");
             boolean firstFreq = true;
-            for (Map.Entry<Double, Double> f : e.getValue().fft.entrySet()) {
+            for (Map.Entry<Double, Double> f : e.getValue().getFft().entrySet()) {
                 if (firstFreq) {
                     firstFreq = false;
                 } else {

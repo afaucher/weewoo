@@ -1,4 +1,4 @@
-package com.beanfarmergames.weewoo;
+package com.beanfarmergames.weewoo.entities;
 
 import com.beanfarmergames.common.entities.BaseGameEntity;
 
