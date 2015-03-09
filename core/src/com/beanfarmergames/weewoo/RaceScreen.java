@@ -1,6 +1,7 @@
 package com.beanfarmergames.weewoo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import com.badlogic.gdx.Gdx;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.beanfarmergames.common.controls.AxisControl;
 import com.beanfarmergames.weewoo.RenderContext.RenderLayer;
@@ -18,7 +20,9 @@ import com.beanfarmergames.weewoo.audio.AudioAnalyzer;
 import com.beanfarmergames.weewoo.audio.AudioProfiles;
 import com.beanfarmergames.weewoo.audio.FrequencyDomain;
 import com.beanfarmergames.weewoo.audio.FrequencyRange;
+import com.beanfarmergames.weewoo.debug.DebugSettings;
 import com.beanfarmergames.weewoo.entities.Car;
+import com.beanfarmergames.weewoo.entities.Person;
 
 public class RaceScreen implements Screen, InputProcessor {
 
@@ -79,6 +83,10 @@ public class RaceScreen implements Screen, InputProcessor {
         if (weeWooDomain != null) {
             actual = AudioAnalyzer.getClosestFreqToTarget(weeWooDomain, target);
             
+            if (DebugSettings.PERFECT_PITCH) {
+                actual = target;
+            }
+            
             float hitRatio = 1- Math.min(Math.max(Math.abs(target-actual) / FREQUENCY_TOLERANCE,0),1);
             proposedBoost = hitRatio;
             
@@ -108,9 +116,18 @@ public class RaceScreen implements Screen, InputProcessor {
                 float boostRatio = blendedBoost;
                 float actualRatio = AudioAnalyzer.getFrequencyRatioInRange(range, actual);
                 drawGuage(renderContext, new Vector2(50, 50), targetRatio, actualRatio, boostRatio);
+                
+                Collection<Person> people = car.getPeople();
+                
+                float headX = 50;
+                float headY = 40;
+                
+                for (Person p : people) {
+                    Rectangle rect = p.renderHealth(renderContext, new Vector2(headX, headY));
+                    headX += rect.width * 1.5f;
+                }
             }
         }
-
     }
 
     public void drawGuage(RenderContext renderContext, Vector2 pos, float target, float actual, float multiplier) {
@@ -122,8 +139,8 @@ public class RaceScreen implements Screen, InputProcessor {
 
         renderer.begin(ShapeType.Filled);
 
-        Color actualColor = Color.RED.lerp(Color.BLUE, actual);
-        Color targetColor = Color.RED.lerp(Color.BLUE, target);
+        Color actualColor = Color.RED.cpy().lerp(Color.BLUE, actual);
+        Color targetColor = Color.RED.cpy().lerp(Color.BLUE, target);
 
         // The 'offset' from the target
         if (actual < target) {
@@ -225,6 +242,12 @@ public class RaceScreen implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
+        
+        if (Input.Keys.F1 == keycode) {
+            DebugSettings.DEBUG_DRAW = !DebugSettings.DEBUG_DRAW;
+        } else if (Input.Keys.F2 == keycode) {
+            DebugSettings.PERFECT_PITCH = !DebugSettings.PERFECT_PITCH;
+        }
 
         for (int i = 0; i < bindings.size(); i++) {
             KeyBinding binding = bindings.get(i);
