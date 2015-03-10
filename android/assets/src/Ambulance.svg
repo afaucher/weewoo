@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="744.09448819"
@@ -14,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.5 r10040"
-   sodipodi:docname="New document 1">
+   sodipodi:docname="Ambulance.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -24,11 +25,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="15.839192"
-     inkscape:cx="13.803373"
-     inkscape:cy="21.668277"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="20.238303"
+     inkscape:cy="71.005172"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer4"
      showgrid="true"
      inkscape:window-width="1920"
      inkscape:window-height="1026"
@@ -52,18 +53,36 @@
     </rdf:RDF>
   </metadata>
   <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Ground"
+     sodipodi:insensitive="true"
+     style="display:none">
+    <rect
+       style="color:#000000;fill:#008000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4459"
+       width="90"
+       height="135"
+       x="-5"
+       y="922.36218" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Blood" />
+  <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1">
     <rect
-       style="color:#000000;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;fill:none;stroke:none;stroke-width:3;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect2987"
        width="25"
        height="25"
        x="0"
        y="1027.3622" />
     <rect
-       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3761"
        width="3"
        height="5"
@@ -119,7 +138,7 @@
        y="1034.3622"
        ry="2" />
     <rect
-       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;stroke-opacity:1"
+       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3795"
        width="9"
        height="3"
@@ -127,12 +146,575 @@
        y="1036.3622"
        ry="1.5" />
     <rect
-       style="color:#000000;fill:none;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
        id="rect3799"
        width="25"
        height="25"
        x="0"
        y="1027.3622"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/art/ambulance.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831"
+       width="25"
+       height="25"
+       x="25"
+       y="1027.3622"
        ry="0" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Hospital">
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-0"
+       width="25"
+       height="25"
+       x="0"
+       y="1002.3622"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03"
+       width="25"
+       height="25"
+       x="25"
+       y="1002.3622"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ffd5d5;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3984"
+       width="25"
+       height="15"
+       x="22"
+       y="1009.3622"
+       ry="1"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ffd5d5;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3951"
+       width="15"
+       height="6"
+       x="5"
+       y="1004.3622"
+       ry="3"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ffd5d5;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3932"
+       width="21"
+       height="17"
+       x="2"
+       y="1008.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3958"
+       width="17"
+       height="13"
+       x="4"
+       y="1010.3622"
+       ry="3"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#d5e5ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="M 8.5 1012.375 C 7.669 1012.375 7 1013.044 7 1013.875 L 7 1019.875 C 7 1020.706 7.669 1021.375 8.5 1021.375 C 9.331 1021.375 10 1020.706 10 1019.875 L 10 1018.375 L 15 1018.375 L 15 1019.875 C 15 1020.706 15.669 1021.375 16.5 1021.375 C 17.331 1021.375 18 1020.706 18 1019.875 L 18 1013.875 C 18 1013.044 17.331 1012.375 16.5 1012.375 C 15.669 1012.375 15 1013.044 15 1013.875 L 15 1016.375 L 10 1016.375 L 10 1013.875 C 10 1013.044 9.331 1012.375 8.5 1012.375 z "
+       id="rect3960"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03-4"
+       width="25"
+       height="25"
+       x="0"
+       y="977.36218"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#d5e5ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4004"
+       width="18"
+       height="8"
+       x="4"
+       y="981.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#d5e5ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4006"
+       width="18"
+       height="8"
+       x="4"
+       y="988.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       id="path4010"
+       style="color:#000000;fill:#d5e5ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 10,992.36218 -2,-2 -2,2 0,2 4,0 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       id="path4010-8"
+       style="color:#000000;fill:#d5e5ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 20,992.36218 -2,-2 -2,2 0,2 4,0 z"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#c83737;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4048"
+       width="2"
+       height="2"
+       x="6"
+       y="984.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03-4-8"
+       width="25"
+       height="25"
+       x="25"
+       y="977.36218"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#ff8080;fill-opacity:1;fill-rule:nonzero;stroke:#001c1c;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 29,979.36218 19,0 -6,6 -13,0 z"
+       id="rect4068"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#ff8080;fill-opacity:1;fill-rule:nonzero;stroke:#001c1c;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 29,985.36218 13,0 -6,6 -7,0 z"
+       id="rect4070"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="fill:#ff8080;fill-opacity:1;stroke:#001c1c;stroke-width:1px;stroke-linecap:square;stroke-linejoin:round;stroke-opacity:1"
+       d="m 48,979.36218 0,16 -6,0 0,-4 0,-6 z"
+       id="path4074"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="fill:#ff8080;fill-opacity:1;stroke:#001c1c;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       d="m 42,985.36218 -6,6 0,4 6,0 z"
+       id="path4076"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03-4-5"
+       width="25"
+       height="25"
+       x="0"
+       y="952.36218"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#800080;fill-opacity:1;fill-rule:nonzero;stroke:#001c1c;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 2,974.36218 0,-19 6,6 0,13 z"
+       id="rect4068-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#800080;fill-opacity:1;fill-rule:nonzero;stroke:#001c1c;stroke-width:1;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 8,974.36218 0,-13 6,6 0,7 z"
+       id="rect4070-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="fill:#800080;fill-opacity:1;stroke:#001c1c;stroke-width:1px;stroke-linecap:square;stroke-linejoin:round;stroke-opacity:1"
+       d="m 2,955.36218 16,0 0,6 -4,0 -6,0 z"
+       id="path4074-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="fill:#800080;fill-opacity:1;stroke:#001c1c;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1"
+       d="m 8,961.36218 6,6 4,0 0,-6 z"
+       id="path4076-2"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03-4-5-4"
+       width="25"
+       height="25"
+       x="25"
+       y="952.36218"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4141"
+       sodipodi:cx="32.5"
+       sodipodi:cy="959.86218"
+       sodipodi:rx="2.5"
+       sodipodi:ry="2.5"
+       d="m 35,959.86218 a 2.5,2.5 0 1 1 -5,0 2.5,2.5 0 1 1 5,0 z"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="M 31.5 960.875 C 30.119288 960.875 29 961.99429 29 963.375 C 29 964.75571 30.119288 965.875 31.5 965.875 C 32.0885 965.875 32.635414 965.65276 33.0625 965.3125 C 33.271807 966.48166 34.270635 967.375 35.5 967.375 C 36.880712 967.375 38 966.25571 38 964.875 C 38 963.49429 36.880712 962.375 35.5 962.375 C 34.9115 962.375 34.364586 962.56599 33.9375 962.90625 C 33.726796 961.7388 32.72815 960.875 31.5 960.875 z "
+       id="path4141-1"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       transform="translate(4,-2)"
+       sodipodi:type="arc"
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4141-4"
+       sodipodi:cx="32.5"
+       sodipodi:cy="959.86218"
+       sodipodi:rx="2.5"
+       sodipodi:ry="2.5"
+       d="m 35,959.86218 a 2.5,2.5 0 1 1 -5,0 2.5,2.5 0 1 1 5,0 z"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="M 40.5 955.375 C 39.119288 955.375 38 956.49429 38 957.875 C 38 958.95541 38.696584 959.83826 39.65625 960.1875 C 39.250815 960.63187 39 961.22607 39 961.875 C 39 963.25571 40.119288 964.375 41.5 964.375 C 42.880712 964.375 44 963.25571 44 961.875 C 44 960.79459 43.303416 959.88049 42.34375 959.53125 C 42.749185 959.08688 43 958.52393 43 957.875 C 43 956.49429 41.880712 955.375 40.5 955.375 z "
+       id="path4141-69"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       transform="translate(7,5)"
+       sodipodi:type="arc"
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4141-28"
+       sodipodi:cx="32.5"
+       sodipodi:cy="959.86218"
+       sodipodi:rx="2.5"
+       sodipodi:ry="2.5"
+       d="m 35,959.86218 a 2.5,2.5 0 1 1 -5,0 2.5,2.5 0 1 1 5,0 z"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="M 35.5 959.375 C 34.119288 959.375 33 960.49429 33 961.875 C 33 963.25571 34.119288 964.375 35.5 964.375 C 36.057378 964.375 36.584264 964.18337 37 963.875 C 37.415736 964.18337 37.942622 964.375 38.5 964.375 C 39.880712 964.375 41 963.25571 41 961.875 C 41 960.49429 39.880712 959.375 38.5 959.375 C 37.935549 959.375 37.418457 959.55949 37 959.875 C 36.581543 959.55949 36.064451 959.375 35.5 959.375 z "
+       id="path4141-6"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03-4-5-4-6"
+       width="25"
+       height="25"
+       x="50"
+       y="952.36218"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 55,957.375 3,6 -4,2 5.625,1.25 -0.625,3.75 3.46875,-2.78125 L 66,969.375 l -1.5,-5.6875 3.5,-6.3125 -6,4.65625 z"
+       id="path4231"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:0.68781424;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 63.953365,959.83633 0.300287,4.03005 3.51029,-0.15322 -3.347635,2.33617 1.892777,1.77049 -3.453478,-0.41362 -1.711861,1.9868 -1.201137,-3.41795 L 55.08686,963.72742 61,964.36218 z"
+       id="path4231-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       style="color:#000000;fill:#2afe00;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:0.49771163;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       d="m 66.476934,963.89283 -2.903954,-0.3442 0.221495,-2.53285 -1.794475,2.3464 -1.220226,-1.42419 0.190079,2.50966 -1.490307,1.17487 2.433035,0.97616 1.4717,3.58124 -0.27236,-4.29478 z"
+       id="path4231-8-9"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccccc"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03-4-5-4-6-6"
+       width="25"
+       height="25"
+       x="50"
+       y="977.36218"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#168500;fill-opacity:1;fill-rule:nonzero;stroke:#00c41c;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4349"
+       sodipodi:cx="65"
+       sodipodi:cy="989.86218"
+       sodipodi:rx="4"
+       sodipodi:ry="2.5"
+       d="m 69,989.86218 a 4,2.5 0 1 1 -8,0 4,2.5 0 1 1 8,0 z"
+       inkscape:tile-cx="65"
+       inkscape:tile-cy="989.86218"
+       inkscape:tile-w="8"
+       inkscape:tile-h="5"
+       inkscape:tile-x0="61"
+       inkscape:tile-y0="987.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.99995823,-0.00914035,0.00914035,0.99995823,-9.0449696,0.63547298)"
+       id="use4361"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.83719257,0.33031591,-0.36701768,0.93021396,374.96186,46.433563)"
+       id="use4363"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.5772255,0.55390497,-0.69238121,0.72153188,714.53342,236.92562)"
+       id="use4365"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.89212395,0.45179072,-0.45179072,0.89212395,457.09301,78.146335)"
+       id="use4367"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.63184928,0.64091067,-0.71212297,0.70205475,728.6137,254.01041)"
+       id="use4369"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.33963481,0.72432603,-0.90540753,0.42454352,936.51095,520.93872)"
+       id="use4371"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.74885042,0.66273905,-0.66273905,0.74885042,676.6882,202.89756)"
+       id="use4373"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.03272209,0.79933051,-0.99916314,0.04090261,1051.0378,892.11507)"
+       id="use4377"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <use
+       x="0"
+       y="0"
+       inkscape:tiled-clone-of="#path4349"
+       xlink:href="#path4349"
+       transform="matrix(0.53094754,0.72670125,-0.80744583,0.58994171,830.87229,357.07242)"
+       id="use4375"
+       width="744.09448"
+       height="1052.3622"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect3831-03-4-5-1"
+       width="25"
+       height="25"
+       x="0"
+       y="927.36218"
+       ry="0"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4399"
+       width="6"
+       height="3"
+       x="16"
+       y="934.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4399-8"
+       width="6"
+       height="3"
+       x="16"
+       y="936.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4399-82"
+       width="6"
+       height="3"
+       x="16"
+       y="938.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4399-2"
+       width="6"
+       height="3"
+       x="16"
+       y="940.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4399-5"
+       width="6"
+       height="3"
+       x="16"
+       y="942.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#ff0000;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4399-5-9"
+       width="6"
+       height="2"
+       x="16"
+       y="944.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
+    <rect
+       style="color:#000000;fill:#cccccc;fill-opacity:1;fill-rule:nonzero;stroke:#626262;stroke-width:1;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4397"
+       width="15"
+       height="20"
+       x="2"
+       y="930.36218"
+       inkscape:export-filename="/home/alex/dev/weewoo/android/assets/buildings.png"
+       inkscape:export-xdpi="230.39999"
+       inkscape:export-ydpi="230.39999" />
   </g>
 </svg>

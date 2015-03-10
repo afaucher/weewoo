@@ -1,12 +1,20 @@
 package com.beanfarmergames.weewoo;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Random;
 
+import com.badlogic.gdx.assets.loaders.FileHandleResolver;
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.ImageResolver;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.MapProperties;
@@ -16,17 +24,26 @@ import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTile;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
+import com.badlogic.gdx.maps.tiled.TiledMapTileSet;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.XmlReader.Element;
 import com.beanfarmergames.common.field.AbstractField;
 import com.beanfarmergames.weewoo.RenderContext.RenderLayer;
 import com.beanfarmergames.weewoo.debug.DebugSettings;
@@ -40,12 +57,59 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
     private TiledMapRenderer mapRenderer = null;
     private static final String level = "maps/LoopTrack.tmx";
     private static final Random rand = new Random();
-    Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+    private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
+    private TmxMapLoaderMagic magicLoader = new TmxMapLoaderMagic(new InternalFileHandleResolver());
+
+    private class TmxMapLoaderMagic extends TmxMapLoader {
+        Map<Integer, List<Rectangle>> tileObjects = new HashMap<Integer, List<Rectangle>>();
+
+        public TmxMapLoaderMagic(FileHandleResolver resolver) {
+            super(resolver);
+        }
+
+        public Map<Integer, List<Rectangle>> getTileObjects() {
+            return tileObjects;
+        }
+
+        @Override
+        protected void loadTileSet(TiledMap map, Element element, FileHandle tmxFile, ImageResolver imageResolver) {
+
+            /**
+             * This accumulates into a member variable which totally breaks the loader model.
+             */
+            Array<Element> tiles = element.getChildrenByName("tile");
+            int gTileId = element.getIntAttribute("firstgid");
+            for (Element tile : tiles) {
+                int tileId = tile.getIntAttribute("id");
+                Array<Element> objectgroups = tile.getChildrenByName("objectgroup");
+                for (Element objectgroup : objectgroups) {
+                    Array<Element> objects = objectgroup.getChildrenByName("object");
+                    for (Element object : objects) {
+                        int objectX = object.getIntAttribute("x");
+                        int objectY = object.getIntAttribute("y");
+                        int objectWidth = object.getIntAttribute("width");
+                        int objectHeight = object.getIntAttribute("height");
+
+                        Rectangle rect = new Rectangle(objectX, objectY, objectWidth, objectHeight);
+
+                        List<Rectangle> rects = tileObjects.get(gTileId + tileId);
+                        if (rects == null) {
+                            rects = new ArrayList<Rectangle>();
+                            tileObjects.put(gTileId + tileId, rects);
+                        }
+                        rects.add(rect);
+                    }
+                }
+            }
+
+            super.loadTileSet(map, element, tmxFile, imageResolver);
+        }
+    }
 
     public Field() {
         super(WeeWooGame.getAssetManager());
 
-        assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
+        assetManager.setLoader(TiledMap.class, magicLoader);
         assetManager.load(level, TiledMap.class);
         assetManager.finishLoading();
 
@@ -71,6 +135,15 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
         return prop;
     }
 
+    private int[] getLayerIndex(String name) {
+        for (int i = 0; i < map.getLayers().getCount(); i++) {
+            if (map.getLayers().get(i).getName().equals(name)) {
+                return new int[] { i };
+            }
+        }
+        throw new RuntimeException("Not found: " + name);
+    }
+
     @Override
     public void render(RenderContext renderContext) {
         super.render(renderContext);
@@ -79,10 +152,12 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
 
         if (RenderLayer.FIELD.equals(renderContext.getRenderLayer())) {
             mapRenderer.setView(camera);
-            mapRenderer.render();
-        }
+            mapRenderer.render(getLayerIndex("ground"));
+        } else if (RenderLayer.ROOF.equals(renderContext.getRenderLayer())) {
+            mapRenderer.setView(camera);
+            mapRenderer.render(getLayerIndex("roof"));
 
-        if (RenderLayer.DEBUG.equals(renderContext.getRenderLayer())) {
+        } else if (RenderLayer.DEBUG.equals(renderContext.getRenderLayer())) {
             if (DebugSettings.DEBUG_DRAW) {
                 ShapeRenderer renderer = renderContext.getRenderer();
                 renderer.setColor(Color.ORANGE);
@@ -117,6 +192,7 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
         MapLayer layer = map.getLayers().get("physics");
         Iterator<MapObject> objectIt = layer.getObjects().iterator();
 
+        // Find hospitals
         while (objectIt.hasNext()) {
             MapObject mo = objectIt.next();
 
@@ -132,6 +208,50 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
                 throw new RuntimeException(type);
             }
         }
+
+        Map<Integer, List<Rectangle>> tileObjects = magicLoader.getTileObjects();
+
+        TiledMapTileLayer roofLayer = (TiledMapTileLayer) map.getLayers().get("roof");
+        for (int x = 0; x < roofLayer.getWidth(); x++) {
+            for (int y = 0; y < roofLayer.getHeight(); y++) {
+                Cell cell = roofLayer.getCell(x, y);
+                if (cell == null) {
+                    continue;
+                }
+
+                TiledMapTile tile = cell.getTile();
+                if (tile == null) {
+                    continue;
+                }
+
+                List<Rectangle> rects = tileObjects.get(tile.getId());
+                if (rects == null) {
+                    continue;
+                }
+
+                for (Rectangle rect : rects) {
+                    BodyDef bd = new BodyDef();
+                    bd.allowSleep = true;
+                    float rectX = x * roofLayer.getTileWidth() + rect.x + rect.width / 2;
+                    float rectY = y * roofLayer.getTileHeight() + rect.y + rect.height / 2;
+                    bd.position.set(rectX, rectY);
+                    Body body = w.createBody(bd);
+
+                    body.setType(BodyType.StaticBody);
+                    PolygonShape sd = new PolygonShape();
+                    sd.setAsBox(rect.width / 2, rect.height / 2);
+
+                    FixtureDef fdef = new FixtureDef();
+                    fdef.shape = sd;
+                    fdef.density = 0.2f;
+                    fdef.friction = 0.5f;
+                    fdef.restitution = 0.6f;
+
+                    Fixture fixture = body.createFixture(fdef);
+                }
+            }
+        }
+
     }
 
     private GameEntity getEntityFromFixture(Fixture f) {

@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 
 public class RenderContext {
     public enum RenderLayer {
-        FIELD, BLOOD, PEOPLE, CAR, UI, DEBUG
+        FIELD, BLOOD, PEOPLE, CAR, ROOF, DEBUG, UI 
     }
     
     private final RenderLayer renderLayer;
