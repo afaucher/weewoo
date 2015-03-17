@@ -1,4 +1,4 @@
-package com.beanfarmergames.weewoo;
+package com.beanfarmergames.weewoo.screen;
 
 import java.io.IOException;
 
@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.IsometricTiledMapRenderer;
+import com.beanfarmergames.weewoo.AudioPeakRecorder;
 import com.beanfarmergames.weewoo.audio.AudioAnalyzer;
 import com.beanfarmergames.weewoo.audio.AudioProfiles;
 import com.beanfarmergames.weewoo.audio.AudioRenderer;

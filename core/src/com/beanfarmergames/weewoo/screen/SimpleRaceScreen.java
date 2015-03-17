@@ -1,4 +1,4 @@
-package com.beanfarmergames.weewoo;
+package com.beanfarmergames.weewoo.screen;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +15,14 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.beanfarmergames.common.controls.AxisControl;
+import com.beanfarmergames.weewoo.AudioPeakRecorder;
+import com.beanfarmergames.weewoo.CarControl;
+import com.beanfarmergames.weewoo.Field;
+import com.beanfarmergames.weewoo.FrequencyTarget;
+import com.beanfarmergames.weewoo.PlayerState;
+import com.beanfarmergames.weewoo.RenderContext;
 import com.beanfarmergames.weewoo.RenderContext.RenderLayer;
+import com.beanfarmergames.weewoo.WeeWooServer;
 import com.beanfarmergames.weewoo.audio.AudioAnalyzer;
 import com.beanfarmergames.weewoo.audio.AudioProfiles;
 import com.beanfarmergames.weewoo.audio.FrequencyDomain;
@@ -24,22 +31,15 @@ import com.beanfarmergames.weewoo.debug.DebugSettings;
 import com.beanfarmergames.weewoo.entities.Car;
 import com.beanfarmergames.weewoo.entities.Person;
 
-public class RaceScreen implements Screen, InputProcessor {
+public class SimpleRaceScreen implements Screen, InputProcessor {
 
-    private final Field field;
-    private final FrequencyTarget frequencyTarget = new FrequencyTarget();
+    private final WeeWooServer server;
+
     private OrthographicCamera camera = null;
     private ShapeRenderer renderer = new ShapeRenderer();
-    private AudioPeakRecorder peakRecorder;
-    
-    private static final float FREQUENCY_TOLERANCE = 50;
 
-    private Car car;
-    private float globalClock = 0;
-
-    public RaceScreen() {
-        field = new Field();
-        field.resetLevel();
+    public SimpleRaceScreen(WeeWooServer server) {
+        this.server = server;
 
         int x = Gdx.app.getGraphics().getWidth();
         int y = Gdx.app.getGraphics().getHeight();
@@ -47,15 +47,9 @@ public class RaceScreen implements Screen, InputProcessor {
         camera = new OrthographicCamera();
         camera.setToOrtho(false, x, y);
 
-        car = new Car(field, new Vector2(30, 30));
-        field.getGameEntities().registerEntity(car);
-
         Gdx.input.setInputProcessor(this);
 
         bindings.add(new KeyBinding(Input.Keys.A, Input.Keys.D, Input.Keys.W, Input.Keys.S));
-
-        peakRecorder = new AudioPeakRecorder(AudioProfiles.WEE_WOO, AudioProfiles.PEAK_FREQ_COUNT);
-        peakRecorder.start();
     }
 
     @Override
@@ -68,126 +62,48 @@ public class RaceScreen implements Screen, InputProcessor {
 
         long miliseconds = (long) (delta * 1000);
         // Update
-        field.updateCallback(miliseconds);
-        frequencyTarget.updateCallback(miliseconds);
-
-        globalClock += delta;
-        
-        float target = frequencyTarget.getTarget();
-        AxisControl boost = car.getCarControl().getBoost();
-        float proposedBoost = 0;
-        float actual = 0;
-
-        FrequencyDomain weeWooDomain = peakRecorder.getLastFilteredDomain();
-
-        if (weeWooDomain != null) {
-            actual = AudioAnalyzer.getClosestFreqToTarget(weeWooDomain, target);
-            
-            if (DebugSettings.PERFECT_PITCH) {
-                actual = target;
-            }
-            
-            float hitRatio = 1- Math.min(Math.max(Math.abs(target-actual) / FREQUENCY_TOLERANCE,0),1);
-            proposedBoost = hitRatio;
-            
-            /*
-             * update(delta) targetClock += delta; targetFrequency =
-             * Sin(targetClock) * range + base. for players accuracy =
-             * (freqencyTolerance - Clamp(0,freqencyTolerance,abs(targetFrequency -
-             * actualFrequency))) / freqencyTolerance player.points += accuracy *
-             * pointsMultipler player.speed = accuracy * playerSpeedMultiplier
-             * targetClock += accuracy * clockSpeedupMultiplier
-             */
-        }
-        float currentBoost = boost.getX();
-        final float blendRatio = 0.1f;
-        float blendedBoost = proposedBoost * blendRatio + currentBoost * (1-blendRatio);
-        boost.setX(blendedBoost);
+        server.updateCallback(miliseconds);
 
         // Render
+
+        Field field = server.getField();
 
         camera.update();
         for (RenderContext.RenderLayer layer : RenderContext.RenderLayer.values()) {
             RenderContext renderContext = new RenderContext(renderer, layer, camera);
             field.render(renderContext);
             if (RenderLayer.UI.equals(renderContext.getRenderLayer())) {
-                FrequencyRange range = peakRecorder.getRange();
-                float targetRatio = AudioAnalyzer.getFrequencyRatioInRange(range, target);
-                float boostRatio = blendedBoost;
-                float actualRatio = AudioAnalyzer.getFrequencyRatioInRange(range, actual);
-                drawGuage(renderContext, new Vector2(50, 50), targetRatio, actualRatio, boostRatio);
-                
-                Collection<Person> people = car.getPeople();
-                
-                float headX = 50;
-                float headY = 40;
-                
-                for (Person p : people) {
-                    Rectangle rect = p.renderHealth(renderContext, new Vector2(headX, headY));
-                    headX += rect.width * 1.5f;
+
+                Collection<PlayerState> players = server.getPlayers();
+                for (PlayerState playerState : players) {
+
+                    Car car = playerState.getCar();
+                    if (car == null) {
+                        continue;
+                    }
+
+                    float target = playerState.getTarget();
+                    float actual = playerState.getActual();
+                    float boostRatio = playerState.getBoostRatio();
+
+                    FrequencyRange range = playerState.getTargetRange();
+
+                    float targetRatio = AudioAnalyzer.getFrequencyRatioInRange(range, target);
+                    float actualRatio = AudioAnalyzer.getFrequencyRatioInRange(range, actual);
+                    RaceUIRenderer.drawGuage(renderContext.getRenderer(), new Vector2(50, 50), targetRatio, actualRatio, boostRatio);
+
+                    Collection<Person> people = car.getPeople();
+
+                    float headX = 50;
+                    float headY = 40;
+
+                    for (Person p : people) {
+                        Rectangle rect = p.renderHealth(renderContext, new Vector2(headX, headY));
+                        headX += rect.width * 1.5f;
+                    }
                 }
             }
         }
-    }
-
-    public void drawGuage(RenderContext renderContext, Vector2 pos, float target, float actual, float multiplier) {
-
-        ShapeRenderer renderer = renderContext.getRenderer();
-
-        int guageWidth = 10;
-        int guageHeight = 80;
-
-        renderer.begin(ShapeType.Filled);
-
-        Color actualColor = Color.RED.cpy().lerp(Color.BLUE, actual);
-        Color targetColor = Color.RED.cpy().lerp(Color.BLUE, target);
-
-        // The 'offset' from the target
-        if (actual < target) {
-            /**
-             * [actual][error] [target ]
-             */
-            renderer.setColor(Color.YELLOW);
-            renderer.rect(pos.x, pos.y, guageWidth, guageHeight * target);
-
-            renderer.setColor(actualColor);
-            renderer.rect(pos.x, pos.y, guageWidth, guageHeight * actual);
-        } else {
-
-            /**
-             * [actual ][error] [target ]
-             */
-            renderer.setColor(Color.YELLOW);
-            renderer.rect(pos.x, pos.y, guageWidth, guageHeight * actual);
-
-            renderer.setColor(actualColor);
-            renderer.rect(pos.x, pos.y, guageWidth, guageHeight * target);
-        }
-
-        renderer.setColor(targetColor);
-        renderer.rect(pos.x + guageWidth, pos.x, guageWidth, guageHeight * target);
-
-        //Multiplier
-        renderer.setColor(Color.ORANGE);
-        renderer.rect(pos.x + guageWidth * 3, pos.x, guageWidth, guageHeight * multiplier);
-
-        renderer.setColor(Color.BLACK);
-
-        // Guage Lines
-        final int guageLineWidth = 5;
-        final int guageHorizLineCount = 4;
-        final int guageHorizLineOvershoot = 2;
-
-        for (int i = 0; i < guageHorizLineCount; i++) {
-            float ratio = (float) i / (guageHorizLineCount - 1);
-            renderer.rectLine(pos.x - guageHorizLineOvershoot, pos.y + guageHeight * ratio, pos.x + guageWidth * 2
-                    + guageHorizLineOvershoot, pos.y + guageHeight * ratio, guageLineWidth);
-        }
-        // Vert
-        renderer.rectLine(pos.x + guageWidth, pos.y, pos.x + guageWidth, pos.y + guageHeight, guageLineWidth);
-
-        renderer.end();
-
     }
 
     @Override
@@ -215,7 +131,6 @@ public class RaceScreen implements Screen, InputProcessor {
 
     @Override
     public void dispose() {
-        field.dispose();
     }
 
     private List<KeyBinding> bindings = new ArrayList<KeyBinding>();
@@ -242,11 +157,17 @@ public class RaceScreen implements Screen, InputProcessor {
 
     @Override
     public boolean keyDown(int keycode) {
-        
+
         if (Input.Keys.F1 == keycode) {
             DebugSettings.DEBUG_DRAW = !DebugSettings.DEBUG_DRAW;
         } else if (Input.Keys.F2 == keycode) {
             DebugSettings.PERFECT_PITCH = !DebugSettings.PERFECT_PITCH;
+        }
+
+        // TODO: Grab the car for player i
+        Car firstCar = getFirstCar();
+        if (firstCar == null) {
+            return false;
         }
 
         for (int i = 0; i < bindings.size(); i++) {
@@ -255,7 +176,7 @@ public class RaceScreen implements Screen, InputProcessor {
                 continue;
             }
 
-            CarControl carControl = car.getCarControl();
+            CarControl carControl = firstCar.getCarControl();
             if (keycode == binding.keycodeLeft) {
                 carControl.getX().setX(-1);
             } else if (keycode == binding.keycodeRight) {
@@ -271,8 +192,26 @@ public class RaceScreen implements Screen, InputProcessor {
         return false;
     }
 
+    private Car getFirstCar() {
+        Car firstCar = null;
+        for (PlayerState playerState : server.getPlayers()) {
+
+            firstCar = playerState.getCar();
+            if (firstCar != null) {
+                break;
+            }
+        }
+        return firstCar;
+    }
+
     @Override
     public boolean keyUp(int keycode) {
+
+        // TODO: Grab the car for player i
+        Car firstCar = getFirstCar();
+        if (firstCar == null) {
+            return false;
+        }
 
         for (int i = 0; i < bindings.size(); i++) {
             KeyBinding binding = bindings.get(i);
@@ -280,7 +219,7 @@ public class RaceScreen implements Screen, InputProcessor {
                 continue;
             }
 
-            CarControl carControl = car.getCarControl();
+            CarControl carControl = firstCar.getCarControl();
             if (keycode == binding.keycodeLeft) {
                 carControl.getX().setX(0);
             } else if (keycode == binding.keycodeRight) {

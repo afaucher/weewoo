@@ -59,6 +59,8 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
     private static final Random rand = new Random();
     private Box2DDebugRenderer debugRenderer = new Box2DDebugRenderer();
     private TmxMapLoaderMagic magicLoader = new TmxMapLoaderMagic(new InternalFileHandleResolver());
+    
+    public static final Color GROUND_COLOR = new Color(139/255.0f,74/255.0f,181/255.0f,1);
 
     private class TmxMapLoaderMagic extends TmxMapLoader {
         Map<Integer, List<Rectangle>> tileObjects = new HashMap<Integer, List<Rectangle>>();

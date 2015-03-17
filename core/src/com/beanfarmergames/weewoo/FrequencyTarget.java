@@ -1,6 +1,7 @@
 package com.beanfarmergames.weewoo;
 
 import com.beanfarmergames.common.callbacks.UpdateCallback;
+import com.beanfarmergames.weewoo.audio.FrequencyRange;
 
 public class FrequencyTarget implements UpdateCallback {
     
@@ -18,5 +19,9 @@ public class FrequencyTarget implements UpdateCallback {
     @Override
     public void updateCallback(long miliseconds) {
         targetClock+= miliseconds / 1000.0f;
+    }
+    
+    public FrequencyRange getTargetRange() {
+        return null;
     }
 }

@@ -2,6 +2,7 @@ package com.beanfarmergames.weewoo;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.assets.AssetManager;
+import com.beanfarmergames.weewoo.screen.MainMenu;
 
 public class WeeWooGame extends Game {
     

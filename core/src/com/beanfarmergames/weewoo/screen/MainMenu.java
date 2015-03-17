@@ -1,4 +1,6 @@
-package com.beanfarmergames.weewoo;
+package com.beanfarmergames.weewoo.screen;
+
+import java.net.InetAddress;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
@@ -11,6 +13,9 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.beanfarmergames.weewoo.ServerBrowser;
+import com.beanfarmergames.weewoo.WeeWooClient;
+import com.beanfarmergames.weewoo.WeeWooServer;
 
 public class MainMenu implements Screen {
     private Stage stage = new Stage();
@@ -54,14 +59,20 @@ public class MainMenu implements Screen {
         buttonPlay.addListener(new ChangeListener() {
             public void changed (ChangeEvent event, Actor actor) {
                 //TODO
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new RaceScreen());
+                WeeWooServer server = new WeeWooServer(); 
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new SimpleRaceScreen(server));
             }
         });
         
         buttonJoin.addListener(new ChangeListener() {
             public void changed (ChangeEvent event, Actor actor) {
-                //((Game)Gdx.app.getApplicationListener()).setScreen(new ControlScreen());
-                ((Game)Gdx.app.getApplicationListener()).setScreen(new WeeWooScreen());
+                InetAddress address = new ServerBrowser().quickDiscovery();
+                if (address == null) {
+                    return;
+                }
+                WeeWooClient client = new WeeWooClient(address);
+                ((Game)Gdx.app.getApplicationListener()).setScreen(new ClientScreen(client));
+                //((Game)Gdx.app.getApplicationListener()).setScreen(new WeeWooScreen());
                 
             }
         });
