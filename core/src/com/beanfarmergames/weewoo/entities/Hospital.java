@@ -14,7 +14,9 @@ import com.badlogic.gdx.math.Vector2;
 import com.beanfarmergames.common.callbacks.RenderCallback;
 import com.beanfarmergames.common.callbacks.UpdateCallback;
 import com.beanfarmergames.weewoo.Field;
+import com.beanfarmergames.weewoo.PlayerState;
 import com.beanfarmergames.weewoo.RenderContext;
+import com.beanfarmergames.weewoo.WeeWooServer;
 
 public class Hospital extends GameEntity implements UpdateCallback, RenderCallback<RenderContext>{
     
@@ -35,14 +37,31 @@ public class Hospital extends GameEntity implements UpdateCallback, RenderCallba
     public Enum<?> getEntityType() {
         return EntityType.Hospital;
     }
+    
+    private PlayerState getPlayerStateForCar(Car car) {
+        WeeWooServer server = field.getServer();
+        for (PlayerState player : server.getPlayers()) {
+            if (car == player.getCar()) {
+                return player;
+            }
+        }
+        return null;
+    }
+    
+    private static int getBonusForPersonRescue(Person person) {
+        return 0;
+    }
 
     @Override
     public void updateCallback(long miliseconds) {
         // TODO Auto-generated method stub
         Collection<GameEntity> cars = field.getGameEntities().getFilteredEntityList(EntityType.Car);
         
+        
         for (GameEntity ge : cars) {
             Car car = (Car)ge;
+            PlayerState player = getPlayerStateForCar(car);
+            
             List<Person> unloadedThisCar = rescued.get(car);
             if (unloadedThisCar == null) {
                 unloadedThisCar = new ArrayList<Person>();
@@ -52,7 +71,12 @@ public class Hospital extends GameEntity implements UpdateCallback, RenderCallba
             Vector2 pos = car.getPosition();
             if (zone.contains(pos)) {
                 Collection<Person> unloaded = car.unloadPeople();
+                
                 for (Person p : unloaded) {
+                    int bonus = getBonusForPersonRescue(p);
+                    if (player != null) {
+                        player.setScore(player.getScore() + bonus);
+                    }
                     p.rescue();
                 }
                 unloadedThisCar.addAll(unloaded);

@@ -10,6 +10,7 @@ public class PlayerState {
     private FrequencyRange targetRange;
     private int playerNumber;
     private Car car;
+    private int score;
 
     public float getActual() {
         return actual;
@@ -58,4 +59,14 @@ public class PlayerState {
     public void setBoostRatio(float boostRatio) {
         this.boostRatio = boostRatio;
     }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
+    
 }

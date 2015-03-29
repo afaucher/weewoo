@@ -57,7 +57,7 @@ public class WeeWooServer extends Listener implements UpdateCallback {
     }
 
     public WeeWooServer() {
-        field = new Field();
+        field = new Field(this);
         field.resetLevel();
 
         Kryo k = server.getKryo();

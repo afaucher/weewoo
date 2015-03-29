@@ -54,6 +54,7 @@ import com.beanfarmergames.weewoo.entities.Person;
 public class Field extends AbstractField<RenderContext, GameEntity> implements ContactListener {
 
     private TiledMap map = null;
+    private final WeeWooServer server;
     private TiledMapRenderer mapRenderer = null;
     private static final String level = "maps/LoopTrack.tmx";
     private static final Random rand = new Random();
@@ -108,8 +109,9 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
         }
     }
 
-    public Field() {
+    public Field(WeeWooServer server) {
         super(WeeWooGame.getAssetManager());
+        this.server = server;
 
         assetManager.setLoader(TiledMap.class, magicLoader);
         assetManager.load(level, TiledMap.class);
@@ -118,6 +120,12 @@ public class Field extends AbstractField<RenderContext, GameEntity> implements C
         map = assetManager.get(level);
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1f);
     }
+
+    public WeeWooServer getServer() {
+        return server;
+    }
+
+
 
     public MapProperties getMapPropertiesAt(Vector2 at) {
         TiledMapTileLayer layer = (TiledMapTileLayer) map.getLayers().get("ground");
